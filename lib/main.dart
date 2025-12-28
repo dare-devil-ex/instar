@@ -4,15 +4,16 @@ import 'package:instar/Pages/homepage.dart';
 import 'package:instar/Pages/settings.dart';
 import 'package:instar/models/theme.dart';
 import 'package:instar/onboard.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final instarState = InstarState();
+  await instarState.init();
+
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => InstarState()..init(),
-      child: const Instar(),
-    ),
+    ChangeNotifierProvider.value(value: instarState, child: const Instar()),
   );
 }
 
@@ -22,6 +23,19 @@ class Instar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<InstarState>(context);
+
+    if (!appState.initialized) {
+      return Scaffold(
+        body: Center(
+          child: Lottie.asset(
+            alignment: const Alignment(0, 0),
+            repeat: true,
+            animate: true,
+            "assets/loader.json",
+          ),
+        ),
+      );
+    }
 
     return MaterialApp(
       routes: {

@@ -22,7 +22,7 @@ class InstarDrawer extends StatelessWidget {
                   height: 100,
                   width: 100,
                   fit: BoxFit.cover,
-                  "images/logo.png",
+                  "assets/images/logo.png",
                 ),
                 Text(
                   'Instar',

@@ -6,7 +6,7 @@ import 'colors.dart';
 class InstarState extends ChangeNotifier {
   bool isDarkMode = false;
   bool hasLoaded = false;
-  bool initalizied = false;
+  bool initialized = false;
   late String appName;
   late String packageName;
   late String version;
@@ -16,12 +16,14 @@ class InstarState extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     isDarkMode = prefs.getBool('isDarkMode') ?? false;
     hasLoaded = prefs.getBool('hasLoaded') ?? false;
-    initalizied = true;
+    initialized = true;
     notifyListeners();
   }
 
-  void toggleTheme() {
+  void toggleTheme() async {
     isDarkMode = !isDarkMode;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkMode', isDarkMode);
     notifyListeners();
   }
 
@@ -35,8 +37,10 @@ class InstarState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onBoardingFinished() {
+  Future<void> onBoardingFinished() async {
     hasLoaded = true;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('hasLoaded', hasLoaded);
     notifyListeners();
   }
 }
