@@ -7,8 +7,12 @@ import 'package:instar/onboard.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    ChangeNotifierProvider(create: (_) => InstarState(), child: const Instar()),
+    ChangeNotifierProvider(
+      create: (_) => InstarState()..init(),
+      child: const Instar(),
+    ),
   );
 }
 

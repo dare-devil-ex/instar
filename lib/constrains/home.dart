@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:instar/models/colors.dart';
+import 'package:instar/models/theme.dart';
+import 'package:provider/provider.dart';
 
 class InstarDrawer extends StatelessWidget {
   const InstarDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final drawerTheme = context.read<InstarState>();
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -23,15 +27,27 @@ class InstarDrawer extends StatelessWidget {
                 Text(
                   'Instar',
                   style: TextStyle(
-                    color: AppColors.darkTextPrimary,
+                    color: drawerTheme.isDarkMode
+                        ? AppColors.darkTextPrimary
+                        : AppColors.lightTextPrimary,
                     fontSize: 24,
                   ),
                 ),
               ],
             ),
           ),
-          title(Icon(Icons.home), 'Home'),
-          title(Icon(Icons.settings), 'Settings'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/home');
+            },
+            child: title(Icon(Icons.home), 'Home'),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+            child: title(Icon(Icons.settings), 'Settings'),
+          ),
           Divider(indent: 10, endIndent: 10),
           GestureDetector(
             onTap: () {
@@ -44,7 +60,6 @@ class InstarDrawer extends StatelessWidget {
     );
   }
 }
-
 
 var searchBar = SliverToBoxAdapter(
   child: Padding(

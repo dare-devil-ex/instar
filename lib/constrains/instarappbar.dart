@@ -29,13 +29,21 @@ class _InstarAppbarState extends State<InstarAppbar> {
                 appState.toggleTheme();
               });
             },
-            child: Icon(appState.isDarkMode ? darkIcon : lightIcon),
+            child: Icon(
+              semanticLabel: "Toggle Theme",
+              appState.isDarkMode ? darkIcon : lightIcon,
+              color: appState.isDarkMode
+                  ? AppColors.lightBackground
+                  : AppColors.lightTextSecondary,
+            ),
           ),
         ),
       ],
       floating: true,
       stretch: true,
-      backgroundColor: AppColors.darkBackground,
+      backgroundColor: appState.isDarkMode
+          ? AppColors.darkBackground
+          : AppColors.lightBackground,
       expandedHeight: 250,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: [StretchMode.zoomBackground],
