@@ -18,11 +18,15 @@ class InstarDrawer extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "images/logo.png",
+                Container(
                   height: 100,
                   width: 100,
-                  fit: BoxFit.cover,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/logo.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 Text(
                   'Instar',
