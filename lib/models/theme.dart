@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instar/utils/permissions.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'colors.dart';
@@ -17,6 +18,7 @@ class InstarState extends ChangeNotifier {
     isDarkMode = prefs.getBool('isDarkMode') ?? false;
     hasLoaded = prefs.getBool('hasLoaded') ?? false;
     initialized = true;
+    checkVideoPermission();
     notifyListeners();
   }
 

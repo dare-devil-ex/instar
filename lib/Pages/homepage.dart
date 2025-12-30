@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instar/constrains/home.dart';
 import 'package:instar/constrains/instarappbar.dart';
+import 'package:instar/constrains/files_list.dart';
 import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -31,24 +32,7 @@ class _HomepageState extends State<Homepage> {
           searchBar,
 
           // Files
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                children: List.generate(
-                  10,
-                  (index) => Container(
-                    margin: EdgeInsets.only(bottom: 12),
-                    height: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          Files(),
         ],
       ),
     );

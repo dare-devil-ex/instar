@@ -29,7 +29,7 @@ class InstarDrawer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Instar',
+                    'Instar',
                   style: TextStyle(
                     color: drawerTheme.isDarkMode
                         ? AppColors.darkTextPrimary

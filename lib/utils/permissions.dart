@@ -1,0 +1,80 @@
+import 'package:instar/models/downloaded_item.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:io';
+import 'package:video_thumbnail/video_thumbnail.dart';
+import 'package:path/path.dart' as p;
+
+Future<bool> requestVideoPermission() async {
+  if (Platform.isAndroid) {
+    if (await Permission.videos.isGranted ||
+        await Permission.storage.isGranted) {
+      return true;
+    }
+
+    if (await Permission.videos.request().isGranted) {
+      return true;
+    }
+
+    if (await Permission.storage.request().isGranted) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+Future<List<VideoItem>> loadInstarVideos() async {
+  final dir = Directory('/storage/emulated/0/Instar');
+
+  if (!await dir.exists()) {
+    await dir.create(recursive: true);
+  }
+
+  final tempDir = await getTemporaryDirectory();
+
+  final videoFiles = dir
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where(
+        (file) =>
+            file.path.endsWith('.mp4') ||
+            file.path.endsWith('.mkv') ||
+            file.path.endsWith('.mov'),
+      )
+      .toList();
+
+  List<VideoItem> videos = [];
+
+  for (final file in videoFiles) {
+    final thumbPath = await VideoThumbnail.thumbnailFile(
+      video: file.path,
+      thumbnailPath: tempDir.path,
+      imageFormat: ImageFormat.JPEG,
+      maxHeight: 200,
+      quality: 75,
+    );
+
+    if (thumbPath == null) continue;
+
+    videos.add(
+      VideoItem(
+        file: file,
+        name: p.basename(file.path),
+        size: await file.length(),
+        thumbnailPath: thumbPath,
+      ),
+    );
+  }
+
+  return videos;
+}
+
+Future<bool> checkVideoPermission() async {
+  requestVideoPermission();
+  if (Platform.isAndroid) {
+    return await Permission.videos.isGranted ||
+        await Permission.storage.isGranted;
+  }
+  return false;
+}
