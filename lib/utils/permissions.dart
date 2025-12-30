@@ -51,8 +51,8 @@ Future<List<VideoItem>> loadInstarVideos() async {
       video: file.path,
       thumbnailPath: tempDir.path,
       imageFormat: ImageFormat.JPEG,
-      maxHeight: 200,
-      quality: 75,
+      maxHeight: 400,
+      quality: 99,
     );
 
     if (thumbPath == null) continue;

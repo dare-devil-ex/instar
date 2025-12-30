@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:instar/models/colors.dart';
 import 'package:instar/models/downloaded_item.dart';
@@ -52,7 +54,7 @@ class _FilesState extends State<Files> {
               ),
             )
           : Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
               child: Column(
                 children: List.generate(
                   videos.length,
@@ -63,43 +65,45 @@ class _FilesState extends State<Files> {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            videos[index].file.path,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(width: 12),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 150,
-                                child: Text(
-                                  videos[index].name,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 14),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(videos[index].thumbnailPath),
+                                width: 100,
+                                height: 100,
+                                alignment: AlignmentGeometry.center,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 150,
+                                  child: Text(
+                                    videos[index].name,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 8),
-                              Text('Size: ${videos[index].size} MB'),
-                              SizedBox(height: 4),
-                              Text('Date: 2024-06-${index + 1}'),
-                            ],
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 14,
-                              ),
+                                SizedBox(height: 8),
+                                Text('Size: ${videos[index].size} MB'),
+                                SizedBox(height: 4),
+                                Text('Date: 2024-06-${index + 1}'),
+                              ],
+                            ),
+                            Expanded(
                               child: GestureDetector(
                                 onTap: () {},
                                 child: Row(
@@ -118,8 +122,8 @@ class _FilesState extends State<Files> {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
