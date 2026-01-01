@@ -22,4 +22,19 @@ class AppColors {
   static const darkSurface = Color(0xFF1C1C24);
   static const darkTextPrimary = Color(0xFFFFFFFF);
   static const darkTextSecondary = Color(0xFFB3B3B3);
+
+  // Dark Mode Cards
+  static const darkCardBackground = Color(0xFF232733);
+  static const darkCardBorder = Color(0xFF2E3444);
+  static const darkCardTitle = Color(0xFFEDEFF2);
+  static const darkCardSubtitle = Color(0xFFA1A6B3);
+
+  // Light Mode Cards
+  static const lightCardBackground = Color(0xFFEFF1F5);
+  static const lightCardBorder = Color(0xFFD8DCE4);
+  static const lightCardTitle = Color(0xFF1A1C20);
+  static const lightCardSubtitle = Color(0xFF4B5563);
+
+  // Common
+  static const shareIcon = Color(0xFFF28C28);
 }

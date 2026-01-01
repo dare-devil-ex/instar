@@ -15,7 +15,7 @@ class Aboutpage extends StatefulWidget {
 class _AboutpageState extends State<Aboutpage> {
   @override
   Widget build(BuildContext context) {
-    final appState = context.read<InstarState>();
+    final appState = context.watch<InstarState>();
 
     return Scaffold(
       appBar: AppBar(

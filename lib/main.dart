@@ -38,7 +38,9 @@ class Instar extends StatelessWidget {
     }
 
     return MaterialApp(
+      initialRoute: '/',
       routes: {
+        '/': (context) => const OnBoardingScreen(),
         '/home': (context) => const Homepage(),
         '/settings': (context) => const Settings(),
         '/about': (context) => const Aboutpage(),

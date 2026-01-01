@@ -33,7 +33,7 @@ class _FilesState extends State<Files> {
 
   @override
   Widget build(BuildContext context) {
-    final colorState = context.read<InstarState>();
+    final colorState = context.watch<InstarState>();
 
     return SliverToBoxAdapter(
       child: videos.isEmpty
@@ -55,7 +55,10 @@ class _FilesState extends State<Files> {
               ),
             )
           : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 8,
+              ),
               child: Column(
                 children: List.generate(
                   videos.length,
@@ -63,7 +66,9 @@ class _FilesState extends State<Files> {
                     margin: EdgeInsets.only(bottom: 12),
                     height: 120,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: colorState.isDarkMode
+                          ? AppColors.darkCardBackground
+                          : AppColors.lightCardBackground,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Padding(
@@ -93,15 +98,32 @@ class _FilesState extends State<Files> {
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontSize: 18,
+                                      color: colorState.isDarkMode
+                                          ? AppColors.darkCardTitle
+                                          : AppColors.lightCardTitle,
                                       fontWeight: FontWeight.bold,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ),
                                 SizedBox(height: 8),
-                                Text('Size: ${videos[index].size} MB'),
+                                Text(
+                                  'Size: ${videos[index].size} MB',
+                                  style: TextStyle(
+                                    color: colorState.isDarkMode
+                                        ? AppColors.darkTextSecondary
+                                        : AppColors.lightTextSecondary,
+                                  ),
+                                ),
                                 SizedBox(height: 4),
-                                Text('Date: 2024-06-${index + 1}'),
+                                Text(
+                                  'Date: 2024-06-${index + 1}',
+                                  style: TextStyle(
+                                    color: colorState.isDarkMode
+                                        ? AppColors.darkCardSubtitle
+                                        : AppColors.lightCardSubtitle,
+                                  ),
+                                ),
                               ],
                             ),
                             Expanded(
@@ -114,7 +136,11 @@ class _FilesState extends State<Files> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(Icons.share, size: 21),
+                                        Icon(
+                                          Icons.share,
+                                          size: 21,
+                                          color: AppColors.shareIcon,
+                                        ),
                                         SizedBox(height: 8),
                                         Text('Share'),
                                       ],
