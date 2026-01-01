@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:instar/models/colors.dart';
-import 'package:instar/models/downloaded_item.dart';
 import 'package:instar/models/theme.dart';
+import 'package:instar/models/video_item.dart';
 import 'package:instar/utils/permissions.dart';
 import 'package:provider/provider.dart';
+
+import '../utils/colors.dart';
 
 class Files extends StatefulWidget {
   const Files({super.key});

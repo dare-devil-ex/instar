@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instar/BoardingScreens/screen01.dart';
-import 'package:instar/BoardingScreens/screen02.dart';
+import 'package:instar/Pages/BoardingScreens/screen01.dart';
+import 'package:instar/Pages/BoardingScreens/screen02.dart';
 import 'package:instar/constrains/onboard.dart';
 import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';

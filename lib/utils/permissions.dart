@@ -1,9 +1,10 @@
-import 'package:instar/models/downloaded_item.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:path/path.dart' as p;
+
+import '../models/video_item.dart';
 
 Future<bool> requestVideoPermission() async {
   if (Platform.isAndroid) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instar/models/colors.dart';
-import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';
+
+import '../models/theme.dart';
+import '../utils/colors.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});

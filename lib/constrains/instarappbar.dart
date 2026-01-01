@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:instar/models/colors.dart';
 import 'package:instar/models/theme.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
+import '../utils/colors.dart';
 
 class InstarAppbar extends StatefulWidget {
   const InstarAppbar({super.key});
