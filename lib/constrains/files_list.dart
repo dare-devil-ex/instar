@@ -34,7 +34,7 @@ class _FilesState extends State<Files> {
   @override
   Widget build(BuildContext context) {
     final colorState = context.watch<InstarState>();
-
+        
     return SliverToBoxAdapter(
       child: videos.isEmpty
           ? Padding(
