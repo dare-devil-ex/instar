@@ -38,7 +38,7 @@ class Instar extends StatelessWidget {
     }
 
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: appState.hasLoaded ? '/home' : '/',
       routes: {
         '/': (context) => const OnBoardingScreen(),
         '/home': (context) => const Homepage(),
@@ -48,7 +48,6 @@ class Instar extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: appState.isDarkMode ? darkTheme : lightTheme,
       themeMode: ThemeMode.system,
-      home: appState.hasLoaded ? const Homepage() : const OnBoardingScreen(),
     );
   }
 }

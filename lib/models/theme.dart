@@ -19,7 +19,7 @@ class InstarState extends ChangeNotifier {
     isDarkMode = prefs.getBool('isDarkMode') ?? false;
     hasLoaded = prefs.getBool('hasLoaded') ?? false;
     initialized = true;
-    checkVideoPermission();
+    checkGalleryPermission();
     notifyListeners();
   }
 

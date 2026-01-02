@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:path/path.dart' as p;
 
-import '../models/video_item.dart';
+import '../models/download_items_model.dart';
 
 Future<bool> requestVideoPermission() async {
   if (Platform.isAndroid) {
@@ -34,16 +34,12 @@ Future<List<VideoItem>> loadInstarVideos() async {
 
   final tempDir = await getTemporaryDirectory();
 
-  final videoFiles = dir
-      .listSync(recursive: true)
-      .whereType<File>()
-      .where(
-        (file) =>
-            file.path.endsWith('.mp4') ||
-            file.path.endsWith('.mkv') ||
-            file.path.endsWith('.mov'),
-      )
-      .toList();
+  final videoFiles = dir.listSync(recursive: true).whereType<File>().where((
+    file,
+  ) {
+    final ext = file.path.toLowerCase();
+    return ext.endsWith('.mp4') || ext.endsWith('.mkv') || ext.endsWith('.mov');
+  }).toList();
 
   List<VideoItem> videos = [];
 
@@ -71,7 +67,41 @@ Future<List<VideoItem>> loadInstarVideos() async {
   return videos;
 }
 
-Future<bool> checkVideoPermission() async {
+Future<List<PostItem>> loadInstarPosts() async {
+  final dir = Directory('/storage/emulated/0/Instar/Posts');
+
+  if (!await dir.exists()) {
+    await dir.create(recursive: true);
+  }
+
+  final postFiles = dir.listSync(recursive: true).whereType<File>().where((
+    file,
+  ) {
+    final ext = file.path.toLowerCase();
+    return ext.endsWith('.jpg') ||
+        ext.endsWith('.jpeg') ||
+        ext.endsWith('.png');
+  }).toList();
+
+  List<PostItem> posts = [];
+
+  for (final file in postFiles) {
+    final thumbPath = file.path;
+
+    posts.add(
+      PostItem(
+        file: file,
+        name: p.basename(file.path),
+        size: await file.length(),
+        thumbnailPath: thumbPath,
+      ),
+    );
+  }
+
+  return posts;
+}
+
+Future<bool> checkGalleryPermission() async {
   requestVideoPermission();
   if (Platform.isAndroid) {
     return await Permission.videos.isGranted ||
