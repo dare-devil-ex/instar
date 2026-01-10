@@ -34,7 +34,11 @@ android {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-    options.compilerArgs.add("-Xlint:-options")
+    options.compilerArgs.addAll(listOf(
+        "-Xlint:-options",
+        "-Xlint:deprecation",
+        "-Xlint:unchecked"
+    ))
 }
 
 flutter {
