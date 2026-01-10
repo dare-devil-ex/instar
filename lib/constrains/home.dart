@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/colors.dart';
+import '../theme/colors.dart';
+import '../models/provider.dart';
 
 class InstarDrawer extends StatelessWidget {
   const InstarDrawer({super.key});

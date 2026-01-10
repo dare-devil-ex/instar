@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-import '../utils/colors.dart';
+import '../theme/colors.dart';
 
 Widget lottieModel(String location, String phrase) {
   return Center(

@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:instar/models/theme.dart';
 import 'package:instar/models/download_items_model.dart';
 import 'package:instar/utils/permissions.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/colors.dart';
+import '../models/provider.dart';
+import '../theme/colors.dart';
 
 class Posts extends StatefulWidget {
   const Posts({super.key});

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instar/utils/permissions.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../utils/colors.dart';
+import '../utils/permissions.dart';
 
 class InstarState extends ChangeNotifier {
   bool isDarkMode = false;
@@ -47,30 +46,3 @@ class InstarState extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-final lightIcon = Icons.light_mode_sharp;
-final darkIcon = Icons.nightlight_round_sharp;
-
-final lightTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: AppColors.igPurple,
-  scaffoldBackgroundColor: AppColors.lightBackground,
-  cardColor: AppColors.lightSurface,
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: AppColors.lightTextPrimary),
-    bodyMedium: TextStyle(color: AppColors.lightTextSecondary),
-  ),
-  buttonTheme: const ButtonThemeData(buttonColor: AppColors.downloadGreen),
-);
-
-final darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  primaryColor: AppColors.igPurple,
-  scaffoldBackgroundColor: AppColors.darkBackground,
-  cardColor: AppColors.darkSurface,
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: AppColors.darkTextPrimary),
-    bodyMedium: TextStyle(color: AppColors.darkTextSecondary),
-  ),
-  buttonTheme: const ButtonThemeData(buttonColor: AppColors.downloadGreen),
-);

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:instar/constrains/home.dart';
 import 'package:instar/constrains/instarappbar.dart';
 import 'package:instar/constrains/reels.dart';
-import 'package:instar/models/theme.dart';
-import 'package:instar/utils/colors.dart';
+import 'package:instar/theme/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../constrains/posts.dart';
+import '../models/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});

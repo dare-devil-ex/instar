@@ -1,3 +1,4 @@
+import 'package:instar/utils/functions.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
@@ -5,25 +6,6 @@ import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:path/path.dart' as p;
 
 import '../models/download_items_model.dart';
-
-Future<bool> requestVideoPermission() async {
-  if (Platform.isAndroid) {
-    if (await Permission.videos.isGranted ||
-        await Permission.storage.isGranted) {
-      return true;
-    }
-
-    if (await Permission.videos.request().isGranted) {
-      return true;
-    }
-
-    if (await Permission.storage.request().isGranted) {
-      return true;
-    }
-  }
-
-  return false;
-}
 
 Future<List<VideoItem>> loadInstarVideos() async {
   final dir = Directory('/storage/emulated/0/Instar');
@@ -52,13 +34,15 @@ Future<List<VideoItem>> loadInstarVideos() async {
       quality: 99,
     );
 
+    final stat = await file.stat();
+
     if (thumbPath == null) continue;
 
     videos.add(
       VideoItem(
         file: file,
         name: p.basename(file.path),
-        size: await file.length(),
+        size: stat.size,
         thumbnailPath: thumbPath,
       ),
     );
@@ -86,14 +70,14 @@ Future<List<PostItem>> loadInstarPosts() async {
   List<PostItem> posts = [];
 
   for (final file in postFiles) {
-    final thumbPath = file.path;
+    final stat = await file.stat();
 
     posts.add(
       PostItem(
         file: file,
         name: p.basename(file.path),
-        size: await file.length(),
-        thumbnailPath: thumbPath,
+        size: stat.size,
+        thumbnailPath: file.path,
       ),
     );
   }
@@ -102,9 +86,10 @@ Future<List<PostItem>> loadInstarPosts() async {
 }
 
 Future<bool> checkGalleryPermission() async {
-  requestVideoPermission();
+  requestMediaPermission();
   if (Platform.isAndroid) {
     return await Permission.videos.isGranted ||
+        await Permission.photos.isGranted ||
         await Permission.storage.isGranted;
   }
   return false;

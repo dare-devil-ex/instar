@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:instar/Pages/aboutpage.dart';
 import 'package:instar/Pages/homepage.dart';
 import 'package:instar/Pages/settings.dart';
-import 'package:instar/models/theme.dart';
+import 'package:instar/theme/theme.dart';
 import 'package:instar/onboard.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
+import 'models/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

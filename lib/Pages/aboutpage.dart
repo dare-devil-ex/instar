@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instar/constrains/home.dart';
-import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/colors.dart';
+import '../models/provider.dart';
+import '../theme/colors.dart';
 
 class Aboutpage extends StatefulWidget {
   const Aboutpage({super.key});

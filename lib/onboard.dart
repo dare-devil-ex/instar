@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:instar/Pages/BoardingScreens/screen01.dart';
 import 'package:instar/Pages/BoardingScreens/screen02.dart';
 import 'package:instar/constrains/onboard.dart';
-import 'package:instar/models/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'models/provider.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
