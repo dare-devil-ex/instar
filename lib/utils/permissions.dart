@@ -52,7 +52,7 @@ Future<List<VideoItem>> loadInstarVideos() async {
 }
 
 Future<List<PostItem>> loadInstarPosts() async {
-  final dir = Directory('/storage/emulated/0/Instar/Posts');
+  final dir = Directory('/storage/emulated/0/Instar');
 
   if (!await dir.exists()) {
     await dir.create(recursive: true);
@@ -62,11 +62,8 @@ Future<List<PostItem>> loadInstarPosts() async {
     file,
   ) {
     final ext = file.path.toLowerCase();
-    return ext.endsWith('.jpg') ||
-        ext.endsWith('.jpeg') ||
-        ext.endsWith('.png');
+    return ext.endsWith('.jpg') || ext.endsWith('.png');
   }).toList();
-
   List<PostItem> posts = [];
 
   for (final file in postFiles) {

@@ -26,6 +26,8 @@ class _PostsState extends State<Posts> {
 
   Future<void> loadPosts() async {
     final result = await loadInstarPosts();
+
+    if (!mounted) return;
     setState(() {
       savedposts = result;
     });

@@ -23,7 +23,6 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     context.read<InstarState>().packageInfo();
-
     super.initState();
   }
 
