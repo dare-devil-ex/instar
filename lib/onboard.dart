@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instar/Pages/BoardingScreens/screen01.dart';
 import 'package:instar/Pages/BoardingScreens/screen02.dart';
-import 'package:instar/Pages/homepage.dart';
 import 'package:instar/constrains/onboard.dart';
+import 'package:instar/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -87,11 +87,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: () {
                     if (currentPage > 0) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (_) => Homepage()),
-                        (Route<dynamic> routes) => false,
-                      );
+                      Navigator.pushNamed(context, "/home");
                       context.read<InstarState>().onBoardingFinished();
                     } else {
                       pageController.nextPage(
